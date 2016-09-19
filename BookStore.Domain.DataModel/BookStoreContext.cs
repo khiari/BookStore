@@ -8,10 +8,15 @@ using BookStore.Domain.Classes;
 
 namespace BookStore.Domain.DataModel
 {
-    class BookStoreContext: DbContext
+    interface IBookStoreContext
+    {
+        void SetModified(Object entity);
+    }
+  public   class BookStoreContext: DbContext,IBookStoreContext
     {
         public BookStoreContext():base("name=DefaultConnection")
         {
+
 
         }
 
@@ -26,5 +31,9 @@ namespace BookStore.Domain.DataModel
             base.SaveChanges();
         }
 
+        public void SetModified(object entity)
+        {
+            Entry(entity).State = EntityState.Modified;
+        }
     }
 }

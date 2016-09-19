@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Domain.DataModel.Infrastructure
 {
-     abstract class RepositoryBase<T> where T:class
+    public abstract class RepositoryBase<T> where T:class
     {
         #region Properties
         private BookStoreContext dataContext;
@@ -57,6 +57,11 @@ namespace BookStore.Domain.DataModel.Infrastructure
         }
 
         public virtual T GetById(int id)
+        {
+            return dbSet.Find(id);
+        }
+
+        public virtual T GetById(string id)
         {
             return dbSet.Find(id);
         }

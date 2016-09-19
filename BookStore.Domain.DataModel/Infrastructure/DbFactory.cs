@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Domain.DataModel.Infrastructure
 {
-    class DbFactory: Disposable,IDbFactory
+   public class DbFactory: Disposable,IDbFactory
     {
 
         BookStoreContext dbContext;

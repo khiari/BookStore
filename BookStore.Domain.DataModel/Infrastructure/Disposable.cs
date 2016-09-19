@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Domain.DataModel.Infrastructure
 {
-    class Disposable : IDisposable
+   public class Disposable : IDisposable
     {
         private bool isDisposed;
 

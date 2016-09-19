@@ -1,14 +1,11 @@
 ﻿using BookStore.Domain.Classes;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BookStore.Domain.DataModel
 {
-    class BookStoreSeedData: DropCreateDatabaseIfModelChanges<BookStoreContext>
+    public class BookStoreSeedData: DropCreateDatabaseIfModelChanges<BookStoreContext> 
     {
         protected override void Seed(BookStoreContext context)
         {
@@ -28,8 +25,8 @@ namespace BookStore.Domain.DataModel
                     genre="scientific",
                     description="good book to begin developping ASP.NET applications",
                     price=20.5F,
-                    reviews =GetReviews(),
-                    authors= getAuthors(),
+                    //reviews =GetReviews(),
+                    //authors= getAuthors(),
                     editor="Apress"
                 }
 

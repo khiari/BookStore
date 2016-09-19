@@ -6,6 +6,7 @@ namespace BookStore.Domain.Classes
     {
         public int Id { get; set; }
         [Required]
+        [Range(0,5)]
         public float rating { get; set; }
         [Required]
         [StringLength(300)]

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BookStore.Domain.DataModel.Infrastructure
 {
-    class UnitOfWork : IUnitOfWork
+   public class UnitOfWork : IUnitOfWork
     {
         private readonly IDbFactory dbFactory;
         private BookStoreContext dbContext;
@@ -24,6 +25,12 @@ namespace BookStore.Domain.DataModel.Infrastructure
         public void Commit()
         {
             DbContext.Commit();
+        }
+
+        public void ModifyEntityState(Object obj)
+        {
+            DbContext.SetModified(obj);
+
         }
     }
 }

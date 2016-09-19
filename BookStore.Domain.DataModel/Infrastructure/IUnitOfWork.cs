@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace BookStore.Domain.DataModel.Infrastructure
 {
-    interface IUnitOfWork
+  public interface IUnitOfWork
     {
 
         void Commit();
+        void ModifyEntityState(Object obj);
     }
 }

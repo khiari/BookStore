@@ -18,6 +18,8 @@ namespace BookStore.Domain.DataModel.Infrastructure
         void Delete(Expression<Func<T, bool>> where);
         // Get an entity by int id
         T GetById(int id);
+        //Get an entity by string id
+        T GetById(string id);
         // Get an entity using delegate
         T Get(Expression<Func<T, bool>> where);
         // Gets all entities of type T

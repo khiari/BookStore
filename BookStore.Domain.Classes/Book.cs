@@ -26,10 +26,10 @@ namespace BookStore.Domain.Classes
         [Range(1.0,500.0)]
         public float price{get; set;}
 
-        public List<Review> reviews{ get; set; }  
-        [MinLength(1)]      
-        public List<Author> authors{ get; set; }
-        [Required]
+        //public List<Review> reviews{ get; set; }  
+        //[MinLength(1)]      
+        //public List<Author> authors{ get; set; }
+        //[Required]
         public string editor{ get; set; }
 
 

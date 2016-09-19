@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Domain.DataModel.Infrastructure
 {
-     interface IDbFactory:IDisposable
+   public  interface IDbFactory:IDisposable
     {
 
         BookStoreContext Init();
