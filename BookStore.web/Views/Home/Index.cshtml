@@ -1,46 +1,54 @@
-﻿@{
+﻿@model  IEnumerable<BookStore.Domain.Classes.Book> 
+
+@{
     ViewBag.Title = "BookStore";
 }
 <div class="row">
     <div class="col-lg-2">
 
-        <p class="well" >search for a book</p>
+        <p class="well">search for a book</p>
 
-        <form>
-            <div class="form-group">
-                <label for="inputKeyWord">Key words</label>
-                <input type="text" class="form-control" id="inputKeyWord" placeholder="Key words" />
-            </div>
+        @Html.ActionLink("BestSellers", "BestSellers", "Books")<br />
+        @Html.ActionLink("New Arrivals", "NewArrivals", "Books")
 
-            <div class="form-group">
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                        select genre
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">scientific</a></li>
-                        <li><a href="#">political</a></li>
-                        <li><a href="#">poetic</a></li>
-                    </ul>
-                </div>
-            </div>
+        @using (Ajax.BeginForm(
+                    new AjaxOptions
+                    {
+                        HttpMethod = "get",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "bookList"
+                    }))
+        {
+            
+                
+                    
+                    <input type="search" class="form-control" id="searchString"  name="searchString"  placeholder="Key words" />
+                    <button type="submit" class="btn btn-default">search</button>
 
-            <div class="form-group">
-                <button type="button" class="btn btn-default">search</button>
+                @*<div class="form-group">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                            select genre
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            @foreach (var genre in ViewBag.genres)
+                            {
+                                <li><a href="#">@genre</a></li>
+                            }
 
-            </div>
+                        </ul>
+                    </div>
+                </div>*@
 
+                
+                    
 
+                
 
+        }
 
-        </form>
-        
-        
-        
-
-
-        
+       
     </div>
     <div class="bs-example">
         <div class="col-lg-8">
@@ -79,11 +87,19 @@
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
             </div>
+            @Html.Partial("BookPartial", Model)
         </div>
+        
     </div>
     <div class="col-lg-2">
         <h2>Web Hosting</h2>
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
+
+   
+  
+
+
+
 </div>

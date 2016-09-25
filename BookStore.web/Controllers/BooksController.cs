@@ -27,10 +27,25 @@ namespace BookStore.web.Controllers
         {
 
             IEnumerable<Book> books;
-            books = bookService.GetBooks().ToList();
-
+            books = bookService.GetBooks().ToList();          
+            ViewBag.genres = books.Select(b => b.genre).Distinct();
             return View(books);
         }
+        [ActionName("BestSellers")]
+        public ActionResult BestSellers()
+        {
+
+            return View();
+        }
+
+        [ActionName("NewArrivals")]
+        public ActionResult NewArrivals()
+        {
+
+            return View();
+        }
+
+
 
         // GET: Books/Details/5
         public ActionResult Details(string id)
@@ -127,6 +142,17 @@ namespace BookStore.web.Controllers
             bookService.removeBook(book);
             bookService.SaveBook();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult SearchBooks(string searchString)
+        {
+            IEnumerable<Book> books;
+            books = bookService.GetBooks().ToList();
+            books = books.Where(b => b.name.Contains(searchString));
+
+            ViewBag.books = books;
+
+            return View();
         }
 
         //protected override void Dispose(bool disposing)

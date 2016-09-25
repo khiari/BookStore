@@ -1,4 +1,5 @@
-﻿using BookStore.Service;
+﻿using BookStore.Domain.Classes;
+using BookStore.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +11,27 @@ namespace BookStore.web.Controllers
     public class HomeController : Controller
     {
         private readonly IBookService bookService;
-
-        public HomeController(BookService bookService)
+        public HomeController(IBookService bookService)
         {
             this.bookService = bookService;
 
         }
 
-        public ActionResult Index()
+
+        public ActionResult Index(String searchString)
         {
+            
+            IEnumerable<Book> books;
+            books = bookService.GetBooks().ToList();
+            ViewBag.genres = books.Select(b => b.genre).Distinct();
+            //books = books.Where(b => b.name.Contains(searchString));
 
-
-
-            return View();
+            if (Request.IsAjaxRequest())
+            {
+                books = books.Where(b => b.name.Contains(searchString));
+                return PartialView("BookPartial", books);
+            }
+            return View(books);
         }
 
         public ActionResult About()

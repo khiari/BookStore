@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using BookStore.Domain.Classes;
 
+
 namespace BookStore.Domain.DataModel
 {
     interface IBookStoreContext
