@@ -25,6 +25,7 @@ namespace BookStore.Domain.DataModel
         public DbSet<Author> Authors { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Cart> Carts { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
 
         public virtual void Commit()

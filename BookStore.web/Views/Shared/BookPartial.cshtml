@@ -1,0 +1,38 @@
+﻿@model  IEnumerable<BookStore.Domain.Classes.Book> 
+
+<div id="bookList">
+    @foreach (var book in Model)
+    {
+        <div>
+            <table class="table">
+                <tr>
+                    <td>name: </td>
+                    <td>@book.name</td>
+                </tr>
+                <tr>
+                    <td>genre: </td>
+                    <td>@book.genre</td>
+                </tr>
+                <tr>
+                    <td>Description: </td>
+                    <td>@book.description</td>
+                </tr>               
+                <tr>
+                    <td>Price: </td>
+                    <td>@book.price </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("Details", "Details","Books",new { id=@book.ISBN}, null)
+                        @Html.ActionLink("Add to Cart","AddBook","Carts", new { id =@book.ISBN },null)
+
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    }
+
+</div>

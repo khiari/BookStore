@@ -1,0 +1,16 @@
+﻿@model IEnumerable<BookStore.Domain.Classes.Review> 
+
+
+<h3>Reviews & Ratings</h3>
+@foreach (var review in Model)
+{
+    <div>
+        <table class="table table-responsive">
+            <tr>
+                <td>@review.review</td>
+                <td>@review.rating</td>
+            </tr>
+        </table>
+    </div>
+}
+

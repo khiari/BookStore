@@ -14,10 +14,10 @@ namespace BookStore.Domain.Classes
         [Key]
         public string ISBN { get; set; }
         [Required]
-        [MaxLength(10),MinLength(4)]
+        [MaxLength(100),MinLength(4)]
         public string name { get; set; }
         [Required]
-        [MaxLength(10), MinLength(4)]
+        [MaxLength(100), MinLength(4)]
         public string genre { get; set; }
         [Required]
         [MaxLength(300)]
@@ -26,10 +26,10 @@ namespace BookStore.Domain.Classes
         [Range(1.0,500.0)]
         public float price{get; set;}
 
-        //public List<Review> reviews{ get; set; }  
-        //[MinLength(1)]      
-        //public List<Author> authors{ get; set; }
-        //[Required]
+        public List<Review> reviews{ get; set; }  
+        
+        public List<Author> authors{ get; set; }
+        [Required]
         public string editor{ get; set; }
 
 

@@ -49,10 +49,15 @@
         <dd>
             @Html.DisplayFor(model => model.editor)
         </dd>
+       
 
     </dl>
 </div>
+<h4>author(s)</h4>
+@Html.Partial("_AuthorsPartial", Model.authors)
+@Html.Partial("_ReviewPartial",Model.reviews)
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ISBN }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Add to Cart", "AddBook", "Carts", new { id = Model.ISBN }, null)
+    @Html.ActionLink("Back to List", "Index","Home")
 </p>

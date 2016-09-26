@@ -25,8 +25,8 @@ namespace BookStore.Domain.DataModel
                     genre="scientific",
                     description="good book to begin developping ASP.NET applications",
                     price=20.5F,
-                    //reviews =GetReviews(),
-                    //authors= getAuthors(),
+                    reviews =GetReviews(),
+                    authors= getAuthors(),
                     editor="Apress"
                 }
 

@@ -329,6 +329,8 @@
     <Content Include="Views\Books\Edit.cshtml" />
     <Content Include="Views\Books\Index.cshtml" />
     <Content Include="Views\Shared\BookPartial.cshtml" />
+    <Content Include="Views\Shared\_ReviewPartial.cshtml" />
+    <Content Include="Views\Shared\_AuthorsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

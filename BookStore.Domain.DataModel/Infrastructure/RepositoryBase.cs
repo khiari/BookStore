@@ -11,8 +11,8 @@ namespace BookStore.Domain.DataModel.Infrastructure
     public abstract class RepositoryBase<T> where T:class
     {
         #region Properties
-        private BookStoreContext dataContext;
-        private readonly IDbSet<T> dbSet;
+        protected BookStoreContext dataContext;
+        protected readonly IDbSet<T> dbSet;
 
         protected IDbFactory DbFactory
         {
@@ -42,6 +42,7 @@ namespace BookStore.Domain.DataModel.Infrastructure
         {
             dbSet.Attach(entity);
             dataContext.Entry(entity).State = EntityState.Modified;
+            
         }
 
         public virtual void Delete(T entity)
@@ -68,6 +69,7 @@ namespace BookStore.Domain.DataModel.Infrastructure
 
         public virtual IEnumerable<T> GetAll()
         {
+            dataContext.Books.Include(x => x.authors).Include(x => x.reviews);
             return dbSet.ToList();
         }
 
