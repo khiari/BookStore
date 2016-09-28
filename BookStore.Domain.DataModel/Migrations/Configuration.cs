@@ -7,7 +7,7 @@ namespace BookStore.Domain.DataModel.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<BookStore.Domain.DataModel.BookStoreContext>
+    public class Configuration : DbMigrationsConfiguration<BookStore.Domain.DataModel.BookStoreContext>
     {
         public Configuration()
         {

@@ -58,6 +58,6 @@
 @Html.Partial("_ReviewPartial",Model.reviews)
 
 <p>
-    @Html.ActionLink("Add to Cart", "AddBook", "Carts", new { id = Model.ISBN }, null)
-    @Html.ActionLink("Back to List", "Index","Home")
+   @Html.ActionLink("Add to cart", "AddToCart","ShoppingCart", new { id = Model.ISBN }, "")
+   @Html.ActionLink("Back to List", "Index","Home")
 </p>

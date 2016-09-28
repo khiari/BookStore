@@ -24,7 +24,7 @@
                 <tr>
                     <td>
                         @Html.ActionLink("Details", "Details","Books",new { id=@book.ISBN}, null)
-                        @Html.ActionLink("Add to Cart","AddBook","Carts", new { id =@book.ISBN },null)
+                        @Html.ActionLink("Add to cart", "AddToCart","ShoppingCart", new { id=@book.ISBN }, "")
 
                     </td>
                 </tr>
