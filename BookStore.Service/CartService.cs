@@ -9,13 +9,13 @@ using BookStore.Domain.DataModel.Infrastructure;
 
 namespace BookStore.Service
 {
-    class CartService : ICartService
+ public    class cartService : ICartService
     {
 
         private readonly ICartrepository cartRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public CartService(ICartrepository cartRepository, IUnitOfWork unitOfWork)
+        public cartService(ICartrepository cartRepository, IUnitOfWork unitOfWork)
         {
             this.cartRepository = cartRepository;
             this.unitOfWork = unitOfWork;
@@ -28,7 +28,7 @@ namespace BookStore.Service
 
         public Cart GetCart(string cartId,string bookId)
         {
-            throw new NotImplementedException();
+           return cartRepository.getCart(cartId, bookId);
         }
 
         public Cart GetCartByRecordId(int recordId)

@@ -13,12 +13,12 @@ namespace BookStore.Domain.DataModel.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201609281455450_migration 1"; }
+            get { return "201609281557206_migration 1"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

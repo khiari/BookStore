@@ -13,17 +13,19 @@ namespace BookStore.web.Controllers
 
         private readonly IBookService bookService;
         private readonly ICartService cartService;
+        private readonly IOrderDetailService orderDetailService;
 
-        public ShoppingCartController(IBookService bookService, ICartService cartService)
+        public ShoppingCartController(IBookService bookService, ICartService cartService, IOrderDetailService orderDetailService)
         {
             this.bookService = bookService;
             this.cartService = cartService;
+            this.orderDetailService = orderDetailService;
 
         }
         // GET: ShoppingCart
         public ActionResult Index()
         {
-            var cart =    ShoppingCart.GetCart(this.HttpContext);
+            var cart =    ShoppingCart.GetCart(this.HttpContext,cartService,orderDetailService);
 
             // Set up our ViewModel
             var viewModel = new ShoppingCartViewModel
@@ -43,7 +45,7 @@ namespace BookStore.web.Controllers
             // Retrieve the album from the database
             var addedBook = bookService.GetBook(id);
             // Add it to the shopping cart
-            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var cart = ShoppingCart.GetCart(this.HttpContext,cartService,orderDetailService);
 
             cart.AddToCart(addedBook);
 
@@ -56,7 +58,7 @@ namespace BookStore.web.Controllers
         public ActionResult RemoveFromCart(int  id)
         {
             // Remove the item from the cart
-            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var cart = ShoppingCart.GetCart(this.HttpContext, cartService, orderDetailService);
 
             // Get the name of the album to display confirmation
             string bookName = cartService.GetCartByRecordId(id).Book.name;
@@ -84,7 +86,7 @@ namespace BookStore.web.Controllers
         [ChildActionOnly]
         public ActionResult CartSummary()
         {
-            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var cart = ShoppingCart.GetCart(this.HttpContext, cartService, orderDetailService);
 
             ViewData["CartCount"] = cart.GetCount();
             return PartialView("CartSummary");

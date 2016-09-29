@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Domain.DataModel.Repository
 {
-    class OrderDetailRepository: RepositoryBase<OrderDetail>, IOrderDetailrepository
+   public  class OrderDetailRepository: RepositoryBase<OrderDetail>, IOrderDetailrepository
     {
         public OrderDetailRepository(IDbFactory dbFactory) : base(dbFactory)
         {

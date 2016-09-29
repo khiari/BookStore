@@ -9,17 +9,15 @@ namespace BookStore.Domain.Classes
     public class Cart
     {
         [Key]
-        public int RecordId { get; set; }      
+        [System.ComponentModel.DataAnnotations.Schema.Column("Id")]
+        public int RecordId { get; set; } 
         public string CartId { get; set; }
         public string BookId { get; set; }
         public int Count { get; set; }
         public System.DateTime DateCreated { get; set; }
         public virtual Book Book { get; set; }
 
-        //[Required]
-        //public int clientId { get; set; }
-        //[MinLength(1)]
-        //public List<IsbnQuantity> IsbnQuantities { get; set; }
+      
 
 
     }

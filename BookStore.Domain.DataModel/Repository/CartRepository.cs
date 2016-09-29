@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace BookStore.Domain.DataModel.Repository
 {
-    class CartRepository : RepositoryBase<Cart>, ICartrepository
+    public class CartRepository : RepositoryBase<Cart>, ICartrepository
     {
         public CartRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
 
 
-        public Cart getCart(string cartId,string bookId=null)
+        public Cart getCart(string CartId,string BookId)
         {            
             return dataContext.Carts.SingleOrDefault(
-               c => c.CartId == cartId
-               && c.BookId == bookId);
+               c => c.CartId == CartId
+               && c.BookId == BookId);
         }
 
-        public IEnumerable<Cart> getCartsById(string cartId)
+        public IEnumerable<Cart> getCartsById(string CartId)
         {
-            return dataContext.Carts.Where(c => c.CartId == cartId);
+            return dataContext.Carts.Where(c => c.CartId == CartId);
 
         }
 
@@ -37,7 +37,9 @@ namespace BookStore.Domain.DataModel.Repository
 
     public interface ICartrepository:IRepository<Cart>
     {
-         IEnumerable<Cart> getCartsById(string cartId);
+         IEnumerable<Cart> getCartsById(string CartId);
         Cart GetByRecordId(int recordId);
+        Cart getCart(string CartId, string BookId);
+
     }
 }

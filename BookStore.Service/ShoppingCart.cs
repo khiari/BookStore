@@ -10,8 +10,11 @@ using System.Web.Mvc;
 
 namespace BookStore.Service
 {
-    public class ShoppingCart
+    public class ShoppingCart: IShoppingCart
     {
+        
+        
+
         #region attributes 
         private readonly ICartService cartService;
         private readonly IOrderDetailService orderDetailService;
@@ -25,22 +28,23 @@ namespace BookStore.Service
         {
 
         }
-        public ShoppingCart(ICartService cartService)
+        public ShoppingCart(ICartService cartService, IOrderDetailService orderDetailService)
         {
             this.cartService = cartService;
+            this.orderDetailService = orderDetailService;
 
         }
 
-        public static ShoppingCart GetCart(HttpContextBase context)
+        public static ShoppingCart GetCart(HttpContextBase context, ICartService cartService, IOrderDetailService orderDetailService)
         {
-            var cart = new ShoppingCart();
+            var cart = new ShoppingCart(cartService,orderDetailService);
             cart.ShoppingCartId = cart.GetCartId(context);
             return cart;
         }
         // Helper method to simplify shopping cart calls
-        public static ShoppingCart GetCart(Controller controller)
+        public static ShoppingCart GetCart(Controller controller, ICartService cartService, IOrderDetailService orderDetailService)
         {
-            return GetCart(controller.HttpContext);
+            return GetCart(controller.HttpContext,cartService,orderDetailService);
         }
         public void AddToCart(Book book)
         {
@@ -55,7 +59,8 @@ namespace BookStore.Service
                     BookId = book.ISBN,
                     CartId = ShoppingCartId,
                     Count = 1,
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now,
+                    Book=book
                 };
                 cartService.CreateCart(cartItem);
             }
@@ -184,6 +189,13 @@ namespace BookStore.Service
             // Return the OrderId as the confirmation number
             return order.OrderId;
         }
+        #endregion
+
+    }
+
+    public interface IShoppingCart
+    {
+
 
     }
 }

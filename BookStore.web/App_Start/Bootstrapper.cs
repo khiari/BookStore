@@ -29,15 +29,29 @@ namespace BookStore.web.App_Start
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerHttpRequest();
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerHttpRequest();
+            builder.RegisterType<ShoppingCart>().As<IShoppingCart>().InstancePerHttpRequest();
+            builder.RegisterType<ShoppingCart>().UsingConstructor(typeof(ICartService), typeof(IOrderDetailService));
 
             // Repositories
             builder.RegisterAssemblyTypes(typeof(BookRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces().InstancePerHttpRequest();
+            builder.RegisterAssemblyTypes(typeof(CartRepository).Assembly)
+            .Where(t => t.Name.EndsWith("Repository"))
+            .AsImplementedInterfaces().InstancePerHttpRequest();
+            builder.RegisterAssemblyTypes(typeof(OrderDetailRepository).Assembly)
+           .Where(t => t.Name.EndsWith("Repository"))
+           .AsImplementedInterfaces().InstancePerHttpRequest();
             // Services
             builder.RegisterAssemblyTypes(typeof(BookService).Assembly)
                .Where(t => t.Name.EndsWith("Service"))
                .AsImplementedInterfaces().InstancePerHttpRequest();
+            builder.RegisterAssemblyTypes(typeof(cartService).Assembly)
+            .Where(t => t.Name.EndsWith("Service"))
+            .AsImplementedInterfaces().InstancePerHttpRequest();
+            builder.RegisterAssemblyTypes(typeof(OrderDetailService).Assembly)
+            .Where(t => t.Name.EndsWith("Service"))
+            .AsImplementedInterfaces().InstancePerHttpRequest();
 
 
 

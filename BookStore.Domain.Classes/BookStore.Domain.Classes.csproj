@@ -45,7 +45,6 @@
     <Compile Include="Book.cs" />
     <Compile Include="Cart.cs" />
     <Compile Include="Client.cs" />
-    <Compile Include="IsbnQuantity.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

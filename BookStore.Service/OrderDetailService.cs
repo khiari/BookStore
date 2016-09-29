@@ -9,7 +9,7 @@ using BookStore.Domain.DataModel.Infrastructure;
 
 namespace BookStore.Service
 {
-    class OrderDetailService : IOrderDetailService
+  public   class OrderDetailService : IOrderDetailService
     {
         private readonly IOrderDetailrepository orderDetailRepository;
         private readonly IUnitOfWork unitOfWork;
