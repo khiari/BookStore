@@ -189,6 +189,19 @@ namespace BookStore.Service
             // Return the OrderId as the confirmation number
             return order.OrderId;
         }
+
+        // When a user has logged in, migrate their shopping cart to
+        // be associated with their username
+        public void MigrateCart(string userName)
+        {
+            var shoppingCart = cartService.GetCartsById(ShoppingCartId);
+
+            foreach (Cart item in shoppingCart)
+            {
+                item.CartId = userName;
+            }
+            cartService.SaveCart();
+        }
         #endregion
 
     }

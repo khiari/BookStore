@@ -82,7 +82,9 @@
     <Compile Include="IBookService.cs" />
     <Compile Include="ICartService.cs" />
     <Compile Include="IOrderDetailService.cs" />
+    <Compile Include="IOrderService.cs" />
     <Compile Include="OrderDetailService.cs" />
+    <Compile Include="OrderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingCart.cs" />
   </ItemGroup>

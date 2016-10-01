@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BookStore.web.Models;
+using BookStore.Service;
+using System.Web.Security;
 
 namespace BookStore.web.Controllers
 {
@@ -17,9 +19,23 @@ namespace BookStore.web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly ICartService cartService;
+        private readonly IOrderDetailService orderDetailService;
 
-        public AccountController()
+        private void MigrateShoppingCart(string UserName)
         {
+            // Associate shopping cart items with logged-in user
+            var cart = ShoppingCart.GetCart(this.HttpContext, cartService, orderDetailService);
+
+            cart.MigrateCart(UserName);
+            Session[ShoppingCart.CartSessionKey] = UserName;
+        }
+
+        public AccountController(ICartService cartService, IOrderDetailService orderDetailService)
+        {
+            this.cartService = cartService;
+            this.orderDetailService = orderDetailService;
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -70,7 +86,25 @@ namespace BookStore.web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                if (Membership.ValidateUser(model.Email, model.Password))
+                {
+                    MigrateShoppingCart(model.Email);
+
+                    FormsAuthentication.SetAuthCookie(model.Email,
+                        model.RememberMe);
+                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1
+                        && returnUrl.StartsWith("/")
+                        && !returnUrl.StartsWith("//") &&
+                        !returnUrl.StartsWith("/\\"))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                }
             }
 
             // This doesn't count login failures towards account lockout
@@ -155,6 +189,11 @@ namespace BookStore.web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    MigrateShoppingCart(model.Email);
+
+                    FormsAuthentication.SetAuthCookie(model.Email, false /*
+                  createPersistentCookie */);
+                    
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

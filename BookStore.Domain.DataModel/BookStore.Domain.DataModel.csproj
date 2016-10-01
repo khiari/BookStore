@@ -66,12 +66,17 @@
     <Compile Include="Migrations\201609281557206_migration 1.Designer.cs">
       <DependentUpon>201609281557206_migration 1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610011412266_migration2.cs" />
+    <Compile Include="Migrations\201610011412266_migration2.Designer.cs">
+      <DependentUpon>201610011412266_migration2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BookRepository.cs" />
     <Compile Include="Repository\CartRepository.cs" />
     <Compile Include="Repository\ClientRepository.cs" />
     <Compile Include="Repository\OrderDetailRepository.cs" />
+    <Compile Include="Repository\OrderRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -91,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609281557206_migration 1.resx">
       <DependentUpon>201609281557206_migration 1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610011412266_migration2.resx">
+      <DependentUpon>201610011412266_migration2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

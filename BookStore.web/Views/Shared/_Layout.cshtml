@@ -24,24 +24,27 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    
+
 
                 </ul>
-                <div class="nav navbar-nav navbar-right">                      
+                <div class="nav navbar-nav navbar-right">
+                    
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Cart", "Index", "ShoppingCart")</li>
-                    </ul>  
 
-                 
+                        <li>@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
+                    </ul>
+
+
 
 
                 </div>
                 @*@using (Html.BeginForm("SearchBooks", "Books", FormMethod.Post, new { @class = "navbar-form navbar-left" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <input type="text" placeholder="Search" id="searchString" class="form-control">
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="text" placeholder="Search" id="searchString" class="form-control">
 
-                }*@
+                    }*@
+
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
